@@ -1,502 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>RoadCare - Smart Road Problem Reporting</title>
+<title>RoadCare - Smart Road Problem Reporting</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            background: #f4f7fb;
-            color: #222;
-        }
+body {
+    background: #f4f7fb;
+    color: #222;
+}
 
-        header {
-            background: #0b5ed7;
-            color: white;
-            padding: 18px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+header {
+    background: #0b5ed7;
+    color: white;
+    padding: 18px 25px;
+    text-align: center;
+}
 
-        header h1 {
-            font-size: 24px;
-        }
+header h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 15px;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
 
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #0b5ed7, #00a8ff);
-            color: white;
-        }
+.hero {
+    background: linear-gradient(135deg, #0b5ed7, #00a8ff);
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+}
 
-        .hero h2 {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
+.hero h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
+.hero p {
+    font-size: 19px;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.6;
+}
 
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #0b5ed7;
-            padding: 13px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 14px 25px;
+    background: white;
+    color: #0b5ed7;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 45px 20px;
+}
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+.report-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            text-align: center;
-        }
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
 
-        .card .icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+}
 
-        .card h3 {
-            margin-bottom: 10px;
-        }
+textarea {
+    height: 120px;
+    resize: vertical;
+}
 
-        .report-box {
-            background: white;
-            max-width: 700px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
+.submit-btn {
+    width: 100%;
+    background: #0b5ed7;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 25px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
+.submit-btn:hover {
+    background: #084298;
+}
 
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-            font-size: 15px;
-        }
+.success {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: #d1e7dd;
+    color: #0f5132;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
 
-        textarea {
-            height: 110px;
-            resize: vertical;
-        }
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
 
-        .submit-btn {
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: #0b5ed7;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.card {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
 
-        .submit-btn:hover {
-            background: #084298;
-        }
+.card h3 {
+    margin: 12px 0;
+}
 
-        #successMessage {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: #d1e7dd;
-            color: #0f5132;
-            border-radius: 8px;
-            text-align: center;
-        }
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
 
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+@media (max-width: 600px) {
+    .hero h2 {
+        font-size: 30px;
+    }
 
-        .step {
-            text-align: center;
-            padding: 20px;
-        }
+    nav a {
+        margin: 0 7px;
+        font-size: 14px;
+    }
 
-        .step-number {
-            width: 45px;
-            height: 45px;
-            line-height: 45px;
-            margin: auto auto 15px;
-            border-radius: 50%;
-            background: #0b5ed7;
-            color: white;
-            font-weight: bold;
-        }
-
-        footer {
-            background: #172033;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-        }
-
-        @media(max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            nav a {
-                margin: 0 7px;
-            }
-
-            .hero h2 {
-                font-size: 30px;
-            }
-        }
-    </style>
+    .report-box {
+        padding: 20px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <h1>🚧 RoadCare</h1>
+<header>
+    <h1>🚧 RoadCare</h1>
 
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#report">Report</a>
-            <a href="#how">How It Works</a>
-        </nav>
-    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#report">Report</a>
+        <a href="#how">How It Works</a>
+    </nav>
+</header>
 
+<section class="hero" id="home">
 
-    <!-- HOME -->
-    <section class="hero" id="home">
+    <h2>Report Road Problems Easily 🚀</h2>
 
-        <h2>Report Road Problems Easily 🚀</h2>
+    <p>
+        Help authorities identify potholes, waterlogging,
+        damaged roads and broken streetlights.
+    </p>
 
-        <p>
-            Help authorities identify potholes, waterlogging,
-            damaged roads and broken streetlights.
-        </p>
+    <a href="#report" class="btn">Report a Problem</a>
 
-        <a href="#report" class="btn">Report a Problem</a>
+</section>
 
-    </section>
+<section class="container">
 
+    <h2 class="section-title">What Can You Report?</h2>
 
-    <!-- PROBLEM TYPES -->
-    <section class="container">
+    <div class="features">
 
-        <h2 class="section-title">
-            What Can You Report?
-        </h2>
-
-        <div class="cards">
-
-            <div class="card">
-                <div class="icon">🕳️</div>
-                <h3>Potholes</h3>
-                <p>Report damaged roads and potholes.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">💧</div>
-                <h3>Waterlogging</h3>
-                <p>Report roads affected by waterlogging.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">💡</div>
-                <h3>Broken Streetlights</h3>
-                <p>Report streetlights that are not working.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🚧</div>
-                <h3>Damaged Roads</h3>
-                <p>Report cracks and other road damages.</p>
-            </div>
-
+        <div class="card">
+            <div style="font-size:40px;">🕳️</div>
+            <h3>Potholes</h3>
+            <p>Report damaged roads and potholes.</p>
         </div>
 
-    </section>
+        <div class="card">
+            <div style="font-size:40px;">💧</div>
+            <h3>Waterlogging</h3>
+            <p>Report roads affected by waterlogging.</p>
+        </div>
 
+        <div class="card">
+            <div style="font-size:40px;">🛣️</div>
+            <h3>Damaged Roads</h3>
+            <p>Report broken or damaged roads.</p>
+        </div>
 
-    <!-- REPORT FORM -->
-    <section class="container" id="report">
+        <div class="card">
+            <div style="font-size:40px;">💡</div>
+            <h3>Streetlights</h3>
+            <p>Report broken streetlights.</p>
+        </div>
 
-        <h2 class="section-title">
-            Report a Road Problem
-        </h2>
+    </div>
 
-        <div class="report-box">
+</section>
 
-            <form id="reportForm">
+<section class="container" id="report">
 
-                <label for="problemType">
-                    Problem Type
-                </label>
+    <h2 class="section-title">🚨 Report a Road Problem</h2>
 
-                <select id="problemType" required>
+    <div class="report-box">
 
-                    <option value="">
-                        Select Problem
-                    </option>
+        <form id="reportForm">
 
-                    <option value="Pothole">
-                        Pothole
-                    </option>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
 
-                    <option value="Waterlogging">
-                        Waterlogging
-                    </option>
+            <label for="phone">Mobile Number</label>
+            <input type="tel" id="phone" placeholder="Enter mobile number" required>
 
-                    <option value="Broken Streetlight">
-                        Broken Streetlight
-                    </option>
+            <label for="type">Problem Type</label>
 
-                    <option value="Damaged Road">
-                        Damaged Road
-                    </option>
+            <select id="type" required>
+                <option value="">Select problem</option>
+                <option>Pothole</option>
+                <option>Waterlogging</option>
+                <option>Damaged Road</option>
+                <option>Broken Streetlight</option>
+                <option>Other</option>
+            </select>
 
-                    <option value="Other">
-                        Other
-                    </option>
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="Enter road/location" required>
 
-                </select>
+            <label for="photo">Upload Photo</label>
+            <input type="file" id="photo" accept="image/*">
 
+            <label for="description">Description</label>
+            <textarea id="description"
+                placeholder="Describe the road problem..."
+                required></textarea>
 
-                <label for="location">
-                    Location
-                </label>
+            <button type="submit" class="submit-btn">
+                Submit Report 🚨
+            </button>
 
-                <input
-                    type="text"
-                    id="location"
-                    placeholder="Enter road/location"
-                    required
-                >
-
-
-                <label for="severity">
-                    Severity
-                </label>
-
-                <select id="severity" required>
-
-                    <option value="">
-                        Select Severity
-                    </option>
-
-                    <option value="Low">
-                        Low
-                    </option>
-
-                    <option value="Medium">
-                        Medium
-                    </option>
-
-                    <option value="High">
-                        High
-                    </option>
-
-                </select>
-
-
-                <label for="description">
-                    Description
-                </label>
-
-                <textarea
-                    id="description"
-                    placeholder="Describe the problem..."
-                    required
-                ></textarea>
-
-
-                <label for="photo">
-                    Upload Image
-                </label>
-
-                <input
-                    type="file"
-                    id="photo"
-                    accept="image/*"
-                >
-
-
-                <button
-                    type="submit"
-                    class="submit-btn"
-                >
-                    Submit Report
-                </button>
-
-            </form>
-
-
-            <div id="successMessage">
+            <div class="success" id="successMessage">
                 ✅ Report submitted successfully!
-                <br>
-                Thank you for helping improve our roads.
             </div>
 
+        </form>
+
+    </div>
+
+</section>
+
+<section class="container" id="how">
+
+    <h2 class="section-title">How It Works</h2>
+
+    <div class="features">
+
+        <div class="card">
+            <h3>1️⃣ Report</h3>
+            <p>Enter the road problem details.</p>
         </div>
 
-    </section>
-
-
-    <!-- HOW IT WORKS -->
-    <section class="container" id="how">
-
-        <h2 class="section-title">
-            How It Works
-        </h2>
-
-        <div class="steps">
-
-            <div class="step">
-
-                <div class="step-number">
-                    1
-                </div>
-
-                <h3>Identify</h3>
-
-                <p>
-                    Find a road-related problem.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    2
-                </div>
-
-                <h3>Report</h3>
-
-                <p>
-                    Enter the location and problem details.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    3
-                </div>
-
-                <h3>Submit</h3>
-
-                <p>
-                    Send the report to the system.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    4
-                </div>
-
-                <h3>Action</h3>
-
-                <p>
-                    Authorities can review and take action.
-                </p>
-
-            </div>
-
+        <div class="card">
+            <h3>2️⃣ Submit</h3>
+            <p>Submit the report with location and photo.</p>
         </div>
 
-    </section>
+        <div class="card">
+            <h3>3️⃣ Action</h3>
+            <p>Authorities can identify and solve the issue.</p>
+        </div>
 
+    </div>
 
-    <!-- FOOTER -->
-    <footer>
+</section>
 
-        <p>
-            © 2026 RoadCare | Smart Road Problem Reporting
-        </p>
+<footer>
+    <p>© 2026 RoadCare | Smart Road Problem Reporting System</p>
+</footer>
 
-    </footer>
+<script>
 
+document.getElementById("reportForm").addEventListener("submit", function(event) {
 
-    <!-- JAVASCRIPT -->
-    <script>
+    event.preventDefault();
 
-        const form = document.getElementById("reportForm");
+    document.getElementById("successMessage").style.display = "block";
 
-        const successMessage =
-            document.getElementById("successMessage");
+    document.getElementById("reportForm").reset();
 
+});
 
-        form.addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-            successMessage.style.display = "block";
-
-            form.reset();
-
-        });
-
-    </script>
+</script>
 
 </body>
 </html>
