@@ -331,6 +331,49 @@ document.getElementById("reportForm").addEventListener("submit", function(event)
 
     document.getElementById("reportForm").reset();
 
+});// RoadFix Status Tracking
+const reportForm = document.getElementById("reportForm");
+
+reportForm.addEventListener("submit", function () {
+    setTimeout(function () {
+
+        const tracking = document.createElement("div");
+
+        tracking.id = "trackingStatus";
+
+        tracking.innerHTML = `
+            <div style="
+                margin-top:20px;
+                padding:20px;
+                background:#ffffff;
+                border-radius:15px;
+                box-shadow:0 4px 12px rgba(0,0,0,0.12);
+            ">
+                <h3 style="color:#0b5ed7;">🚧 Complaint Status</h3>
+
+                <p><strong>Status:</strong> 🟡 Reported</p>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-top:15px;
+                    font-size:13px;
+                ">
+                    <span>🟡<br>Reported</span>
+                    <span>⚪<br>Assigned</span>
+                    <span>⚪<br>In Progress</span>
+                    <span>⚪<br>Fixed</span>
+                </div>
+
+                <p style="margin-top:15px;color:#555;">
+                    Your complaint has been successfully reported.
+                </p>
+            </div>
+        `;
+
+        document.getElementById("reportForm").parentElement.appendChild(tracking);
+
+    }, 100);
 });
 
 </script>
