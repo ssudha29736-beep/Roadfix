@@ -377,6 +377,37 @@ reportForm.addEventListener("submit", function () {
 });
 
 </script>
+<!-- Officer Dashboard -->
+<section class="container" id="officerDashboard">
+    <h2 class="section-title">👨‍💼 Officer Dashboard</h2>
 
+    <div class="card">
+        <h3>Complaint RF001</h3>
+        <p><strong>Problem:</strong> Pothole</p>
+        <p><strong>Location:</strong> Test Road</p>
+
+        <label for="officerStatus">Update Status:</label>
+
+        <select id="officerStatus" onchange="updateComplaintStatus()">
+            <option value="Reported">🟡 Reported</option>
+            <option value="Assigned">🔵 Assigned</option>
+            <option value="In Progress">🟠 In Progress</option>
+            <option value="Fixed">🟢 Fixed</option>
+        </select>
+
+        <p id="currentOfficerStatus">
+            Current Status: 🟡 Reported
+        </p>
+    </div>
+</section>
+
+<script>
+function updateComplaintStatus() {
+    const status = document.getElementById("officerStatus").value;
+
+    document.getElementById("currentOfficerStatus").innerHTML =
+        "Current Status: " + status;
+}
+</script>
 </body>
 </html>
