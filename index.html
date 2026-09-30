@@ -269,9 +269,21 @@ footer {
 
             <label for="location">Location</label>
             <input type="text" id="location" placeholder="Enter road/location" required>
+            
 
-            <label for="photo">Upload Photo</label>
-            <input type="file" id="photo" accept="image/*">
+           <!-- GPS Location -->
+           <label>📍 GPS Location</label>
+
+             <button type="button" onclick="getLocation()" class="submit-btn">
+    Get My Location 📍
+</button>
+
+<input type="hidden" id="latitude">
+<input type="hidden" id="longitude">
+
+<label for="photo">Upload Photo</label>
+<input type="file" id="photo" accept="image/*">
+            
 
             <label for="description">Description</label>
             <textarea id="description"
@@ -408,6 +420,34 @@ function updateComplaintStatus() {
     document.getElementById("currentOfficerStatus").innerHTML =
         "Current Status: " + status;
 }
+    function getLocation() {
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+
+                document.getElementById("latitude").value =
+                    position.coords.latitude;
+
+                document.getElementById("longitude").value =
+                    position.coords.longitude;
+
+                alert(
+                    "📍 Location captured successfully!\n" +
+                    "Latitude: " + position.coords.latitude +
+                    "\nLongitude: " + position.coords.longitude
+                );
+            },
+
+            function() {
+                alert("❌ Please allow location permission.");
+            }
+        );
+
+    } else {
+        alert("❌ GPS is not supported by this browser.");
+    }
+    }
 </script>
 </body>
 </html>
